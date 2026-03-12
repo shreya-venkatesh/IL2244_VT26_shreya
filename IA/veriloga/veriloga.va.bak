@@ -1,0 +1,80 @@
+`include "constants.vams"
+`include "disciplines.vams"
+//CommENt what each input is what (with pin descrptions)
+module ACCIA (
+    VIN_P,
+    VIN_N,
+    VREF,
+    VOUT_P,
+    VOUT_N,
+    EN,
+    IBIAS,
+    VDDA,
+    GNDA
+);
+
+inout VIN_P, VIN_N, VREF, VOUT_P, VOUT_N, EN, IBIAS, VDDA, GNDA;
+electrical VIN_P, VIN_N, VREF, VOUT_P, VOUT_N, EN, IBIAS, VDDA, GNDA;
+
+parameter real Ad = 10;
+parameter real CMRR_dB = 100;
+parameter real Vos = 5e-6; // Input offset voltage
+parameter real Rin = 10e6;    
+parameter real f_lp = 40e3; // LPF Cutoff freq
+parameter real v_margin = 0.1;      
+parameter real vth_en = 1.65;  
+parameter real RIBIAS = 1e9;  // Resistor from IBIAS to GNDA   
+
+real Acm;
+real vdiff, vcm;
+real v_core;
+real v_filt;
+real v_out_lin;
+real v_out;
+
+integer en_state; //For cross function
+
+analog begin
+    @(initial_step)
+        en_state = (V(EN, GNDA) > vth_en) ? 1 : 0;
+
+    @(cross(V(EN, GNDA) - vth_en, +1))
+        en_state = 1;
+
+    @(cross(V(EN, GNDA) - vth_en, -1))
+        en_state = 0;
+        
+    I(IBIAS, GNDA) <+ V(IBIAS, GNDA) / RIBIAS;    
+
+    Acm = Ad / pow(10.0, CMRR_dB/20.0); // CMRR dB to linear
+ 
+    vdiff = V(VIN_P, VIN_N); // Differential
+    vcm   = (V(VIN_P, GNDA) + V(VIN_N, GNDA)) / 2.0; // Common Mode
+
+    v_core = Ad * (vdiff + Vos) + Acm * vcm; // Amplification
+
+    v_filt = laplace_nd(
+                v_core,
+                {2*`M_PI*f_lp},
+                {2*`M_PI*f_lp, 1}
+             ); //LPF
+
+    v_out_lin = V(VREF, GNDA) + v_filt; // Output 
+
+    if (en_state == 1)
+        v_out = v_out_lin;
+    else
+        v_out = V(VREF, GNDA);
+
+    V(VOUT_P, GNDA) <+ V(VREF, GNDA) + (v_out - V(VREF, GNDA));
+    V(VOUT_N, GNDA) <+ V(VREF, GNDA) - (v_out - V(VREF, GNDA));
+
+end
+
+endmodule
+
+// Use cross function to wait for evENt
+// Bias is current, bias here should be called vref. Add extra pin
+// Intermediate statement, careful with outputs to prevent latching. Only one VOUT statement. 
+// Differential output
+// Prefer uppercase for pin names
