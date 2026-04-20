@@ -1,0 +1,32 @@
+Starting Single Run, Sweeps and Corners...
+
+Current time: Thu Apr 16 06:07:26 2026 
+Best design point: 1
+Design specs: 
+	Noise	corner	Nominal - 
+	output noise; V**2/Hz		Error	No
+	harm=2 freq; pss (Hz)		100
+	harmonic(db(vh('pss "/VOUT")) 1)		-193.3
+	harmonic(db(vh('pss "/VOUT")) 2)		-201.9
+	harmonic(mag(vh('pss "/VOUT")) 1)		216.4p
+	(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))		8.558
+	V/V /V12 temperature=-40; pxf dB20(V/V)		Error	No
+	V/V /V12 temperature=80; pxf dB20(V/V)		Error	No
+Design parameters: 
+	VCM_AC		1
+	VCM_DC		1.6
+	VDD		3.3
+	VDD_STEP		0
+	VIN_AC		1
+	VIN_DC		0
+	VIN_STEP		0
+	VCM_AMP		0
+	VIN_AMP		0
+	VIN_FREQ		50
+	F		4K
+
+Interactive.249
+Number of points completed: 1
+Number of simulation errors: 0
+Interactive.249 completed. 
+Current time: Thu Apr 16 06:08:35 2026 

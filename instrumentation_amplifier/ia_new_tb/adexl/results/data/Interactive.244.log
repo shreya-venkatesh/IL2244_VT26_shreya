@@ -1,0 +1,26 @@
+Starting Single Run, Sweeps and Corners...
+
+Current time: Mon Apr 20 17:02:23 2026 
+Best design point: 1
+Design specs: 
+	Transient	corner	Nominal - 
+	V/V /V1; xf dB20(V/V)		Error	No
+Design parameters: 
+	VCM_AC		0
+	VCM_AMP		0
+	VCM_DC		1.65
+	VDD		3.3
+	VDD_PULSE		0
+	VDD_PULSE_RT		1m
+	VIN_AC		0
+	VIN_AMP		1m
+	VIN_DC		300m
+	VIN_FREQ		0
+	VIN_PULSE		0
+	F		500
+
+Interactive.244
+Number of points completed: 1
+Number of simulation errors: 0
+Interactive.244 completed. 
+Current time: Mon Apr 20 17:02:43 2026 

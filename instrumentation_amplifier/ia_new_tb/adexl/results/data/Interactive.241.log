@@ -1,0 +1,154 @@
+Starting Single Run, Sweeps and Corners...
+
+Current time: Mon Apr 20 12:10:46 2026 
+Best design point: 1
+Design specs: 
+	Transient	corner	C0_0 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_1 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_2 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_3 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_4 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_5 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_6 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_7 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_8 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_9 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_10 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_11 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_12 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_13 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_14 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_15 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_16 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_17 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_18 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_19 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_20 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_21 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_22 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_23 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_24 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_25 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_26 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_27 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_28 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_29 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_30 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_31 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_32 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_33 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_34 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_35 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_36 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_37 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_38 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_39 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_40 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_41 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_42 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_43 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_44 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_45 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_46 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_47 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_48 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_49 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_50 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_51 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_52 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_53 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_54 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_55 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_56 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_57 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_58 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_59 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_60 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_61 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_62 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	C0_63 - 
+	V/V /V1; xf dB20(V/V)		Error	No
+	Transient	corner	Nominal - 
+	V/V /V1; xf dB20(V/V)		Error	No
+Design parameters: 
+	VCM_AC		0
+	VCM_AMP		0
+	VCM_DC		1.65
+	VDD		3.3
+	VDD_PULSE		0
+	VDD_PULSE_RT		1m
+	VIN_AC		0
+	VIN_AMP		1m
+	VIN_DC		0
+	VIN_FREQ		0
+	VIN_PULSE		1m
+	F		500
+
+Interactive.241
+Number of points completed: 1
+Number of simulation errors: 0
+Interactive.241 completed. 
+Current time: Mon Apr 20 12:13:39 2026 

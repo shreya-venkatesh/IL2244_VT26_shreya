@@ -1,0 +1,5330 @@
+<?xml version="1.0"?>
+<setupdb version="6">data
+	<active>Active Setup
+		<corners>
+			<corner enabled="1">_default</corner>
+			<corner enabled="1">C0
+				<vars>
+					<var>temperature
+						<value>-40 80</value>
+					</var>
+					<var>VDD
+						<value>3.63 2.97</value>
+					</var>
+				</vars>
+				<models>
+					<model enabled="1">processOption.scs
+						<modeltest>All</modeltest>
+						<modelblock>Global</modelblock>
+						<modelfile>/opt/pdk/ams/410/spectre/c35/processOption.scs</modelfile>
+						<modelsection></modelsection>
+					</model>
+					<model enabled="1">cmos53.scs
+						<modeltest>All</modeltest>
+						<modelblock>Global</modelblock>
+						<modelfile>/opt/pdk/ams/410/spectre/c35/cmos53.scs</modelfile>
+						<modelsection>"cmoswo" "cmoswp" "cmosws" "cmoswz"</modelsection>
+					</model>
+					<model enabled="1">res.scs
+						<modeltest>All</modeltest>
+						<modelblock>Global</modelblock>
+						<modelfile>/opt/pdk/ams/410/spectre/c35/res.scs</modelfile>
+						<modelsection>"reswp" "resws"</modelsection>
+					</model>
+					<model enabled="1">cap.scs
+						<modeltest>All</modeltest>
+						<modelblock>Global</modelblock>
+						<modelfile>/opt/pdk/ams/410/spectre/c35/cap.scs</modelfile>
+						<modelsection>"capwp" "capws"</modelsection>
+					</model>
+					<model enabled="0">bip.scs
+						<modeltest>All</modeltest>
+						<modelblock>Global</modelblock>
+						<modelfile>/opt/pdk/ams/410/spectre/c35/bip.scs</modelfile>
+						<modelsection></modelsection>
+					</model>
+					<model enabled="0">ind.scs
+						<modeltest>All</modeltest>
+						<modelblock>Global</modelblock>
+						<modelfile>/opt/pdk/ams/410/spectre/c35/ind.scs</modelfile>
+						<modelsection></modelsection>
+					</model>
+					<model enabled="0">esddiode.scs
+						<modeltest>All</modeltest>
+						<modelblock>Global</modelblock>
+						<modelfile>/opt/pdk/ams/410/spectre/c35/esddiode.scs</modelfile>
+						<modelsection></modelsection>
+					</model>
+				</models>
+			</corner>
+		</corners>
+		<extensions>
+			<extension>Parasitics
+				<callback>_parSetupDBExtensionCB</callback>
+				<iconvalue></iconvalue>
+				<icontype></icontype>
+			</extension>
+		</extensions>
+		<currentmode>Monte Carlo Sampling</currentmode>
+		<overwritehistory>0</overwritehistory>
+		<tests>
+			<test enabled="1">AC
+				<tool>ADE</tool>
+				<tooloptions>
+					<option>cell
+						<value>ia_tb_ac</value>
+					</option>
+					<option>lib
+						<value>instrumentation_amplifier</value>
+					</option>
+					<option>sim
+						<value>spectre</value>
+					</option>
+					<option>view
+						<value>schematic</value>
+					</option>
+					<option>path
+						<value>$AXL_SETUPDB_DIR/test_states</value>
+					</option>
+					<option>state
+						<value>AC_active</value>
+					</option>
+				</tooloptions>
+				<origoptions>
+					<option>cell
+						<value>ia_tb_ac</value>
+					</option>
+					<option>lib
+						<value>instrumentation_amplifier</value>
+					</option>
+					<option>sim
+						<value>spectre</value>
+					</option>
+					<option>view
+						<value>schematic</value>
+					</option>
+				</origoptions>
+				<outputs>
+					<output>nil
+						<evalType>point</evalType>
+					</output>
+				</outputs>
+			</test>
+			<test enabled="1">Noise
+				<tool>ADE</tool>
+				<tooloptions>
+					<option>cell
+						<value>ia_tb_ac</value>
+					</option>
+					<option>lib
+						<value>instrumentation_amplifier</value>
+					</option>
+					<option>sim
+						<value>spectre</value>
+					</option>
+					<option>view
+						<value>schematic</value>
+					</option>
+					<option>path
+						<value>$AXL_SETUPDB_DIR/test_states</value>
+					</option>
+					<option>state
+						<value>Noise_active</value>
+					</option>
+				</tooloptions>
+				<origoptions>
+					<option>cell
+						<value>ia_tb_ac</value>
+					</option>
+					<option>lib
+						<value>instrumentation_amplifier</value>
+					</option>
+					<option>sim
+						<value>spectre</value>
+					</option>
+					<option>view
+						<value>schematic</value>
+					</option>
+				</origoptions>
+				<outputs>
+					<output>vh('pss "/VOUT")
+						<evalType>point</evalType>
+					</output>
+					<output>harmonic(db(vh('pss "/VOUT")) 1)
+						<evalType>point</evalType>
+					</output>
+					<output>harmonic(db(vh('pss "/VOUT")) 2)
+						<evalType>point</evalType>
+					</output>
+					<output>harmonic(mag(vh('pss "/VOUT")) 1)
+						<evalType>point</evalType>
+					</output>
+					<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+						<evalType>point</evalType>
+					</output>
+				</outputs>
+			</test>
+			<test enabled="1">MC
+				<tool>ADE</tool>
+				<outputs>
+					<output>nil
+						<evalType>point</evalType>
+					</output>
+					<output>Poles
+						<evalType>point</evalType>
+					</output>
+					<output>Zeros
+						<evalType>point</evalType>
+					</output>
+				</outputs>
+				<tooloptions>
+					<option>cell
+						<value>ia_tb_ac</value>
+					</option>
+					<option>lib
+						<value>instrumentation_amplifier</value>
+					</option>
+					<option>path
+						<value>$AXL_SETUPDB_DIR/test_states</value>
+					</option>
+					<option>sim
+						<value>spectre</value>
+					</option>
+					<option>state
+						<value>MC_active</value>
+					</option>
+					<option>view
+						<value>schematic</value>
+					</option>
+				</tooloptions>
+				<prerunscript>0</prerunscript>
+				<origoptions>
+					<option>cell
+						<value>ia_tb_ac</value>
+					</option>
+					<option>lib
+						<value>instrumentation_amplifier</value>
+					</option>
+					<option>path
+						<value>$AXL_SETUPDB_DIR/test_states</value>
+					</option>
+					<option>sim
+						<value>spectre</value>
+					</option>
+					<option>state
+						<value>AC:1_state</value>
+					</option>
+					<option>view
+						<value>schematic</value>
+					</option>
+				</origoptions>
+			</test>
+			<test enabled="1">Noise:1
+				<tool>ADE</tool>
+				<outputs>
+					<output>vh('pss "/VOUT")
+						<evalType>point</evalType>
+					</output>
+					<output>harmonic(db(vh('pss "/VOUT")) 1)
+						<evalType>point</evalType>
+					</output>
+					<output>harmonic(db(vh('pss "/VOUT")) 2)
+						<evalType>point</evalType>
+					</output>
+					<output>harmonic(mag(vh('pss "/VOUT")) 1)
+						<evalType>point</evalType>
+					</output>
+					<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+						<evalType>point</evalType>
+					</output>
+				</outputs>
+				<tooloptions>
+					<option>cell
+						<value>ia_tb_ac</value>
+					</option>
+					<option>lib
+						<value>instrumentation_amplifier</value>
+					</option>
+					<option>path
+						<value>$AXL_SETUPDB_DIR/test_states</value>
+					</option>
+					<option>sim
+						<value>spectre</value>
+					</option>
+					<option>state
+						<value>Noise:1_active</value>
+					</option>
+					<option>view
+						<value>schematic</value>
+					</option>
+				</tooloptions>
+				<prerunscript>0</prerunscript>
+				<origoptions>
+					<option>cell
+						<value>ia_tb_ac</value>
+					</option>
+					<option>lib
+						<value>instrumentation_amplifier</value>
+					</option>
+					<option>path
+						<value>$AXL_SETUPDB_DIR/test_states</value>
+					</option>
+					<option>sim
+						<value>spectre</value>
+					</option>
+					<option>state
+						<value>Noise:1_state</value>
+					</option>
+					<option>view
+						<value>schematic</value>
+					</option>
+				</origoptions>
+			</test>
+		</tests>
+		<vars>
+			<var enabled="1">VCM_AC
+				<value>1</value>
+				<dependentTests>
+					<dependentTest enabled="1">AC</dependentTest>
+					<dependentTest enabled="1">MC</dependentTest>
+					<dependentTest enabled="1">Noise:1</dependentTest>
+					<dependentTest enabled="1">Noise</dependentTest>
+				</dependentTests>
+			</var>
+			<var>VCM_DC
+				<value>1.6</value>
+				<dependentTests>
+					<dependentTest enabled="1">AC</dependentTest>
+					<dependentTest enabled="1">MC</dependentTest>
+					<dependentTest enabled="1">Noise:1</dependentTest>
+					<dependentTest enabled="1">Noise</dependentTest>
+				</dependentTests>
+			</var>
+			<var>VDD
+				<value>3.3</value>
+				<dependentTests>
+					<dependentTest enabled="1">AC</dependentTest>
+					<dependentTest enabled="1">MC</dependentTest>
+					<dependentTest enabled="1">Noise:1</dependentTest>
+					<dependentTest enabled="1">Noise</dependentTest>
+				</dependentTests>
+			</var>
+			<var>VDD_STEP
+				<value>0</value>
+				<dependentTests>
+					<dependentTest enabled="1">AC</dependentTest>
+					<dependentTest enabled="1">MC</dependentTest>
+					<dependentTest enabled="1">Noise:1</dependentTest>
+					<dependentTest enabled="1">Noise</dependentTest>
+				</dependentTests>
+			</var>
+			<var>VIN_AC
+				<value>1</value>
+				<dependentTests>
+					<dependentTest enabled="1">AC</dependentTest>
+					<dependentTest enabled="1">MC</dependentTest>
+					<dependentTest enabled="1">Noise:1</dependentTest>
+					<dependentTest enabled="1">Noise</dependentTest>
+				</dependentTests>
+			</var>
+			<var>VIN_DC
+				<value>0</value>
+				<dependentTests>
+					<dependentTest enabled="1">AC</dependentTest>
+					<dependentTest enabled="1">MC</dependentTest>
+					<dependentTest enabled="1">Noise:1</dependentTest>
+					<dependentTest enabled="1">Noise</dependentTest>
+				</dependentTests>
+			</var>
+			<var>VIN_STEP
+				<value>0</value>
+				<dependentTests>
+					<dependentTest enabled="1">AC</dependentTest>
+					<dependentTest enabled="1">MC</dependentTest>
+					<dependentTest enabled="1">Noise:1</dependentTest>
+					<dependentTest enabled="1">Noise</dependentTest>
+				</dependentTests>
+			</var>
+			<var enabled="1">VCM_AMP
+				<value>0</value>
+				<dependentTests>
+					<dependentTest omitted="0">AC</dependentTest>
+					<dependentTest enabled="1">MC</dependentTest>
+					<dependentTest enabled="1">Noise:1</dependentTest>
+					<dependentTest enabled="1">Noise</dependentTest>
+				</dependentTests>
+			</var>
+			<var>VIN_AMP
+				<value>0</value>
+				<dependentTests>
+					<dependentTest omitted="0">AC</dependentTest>
+					<dependentTest enabled="1">MC</dependentTest>
+					<dependentTest enabled="1">Noise:1</dependentTest>
+					<dependentTest enabled="1">Noise</dependentTest>
+				</dependentTests>
+			</var>
+			<var>VIN_FREQ
+				<value>50</value>
+				<dependentTests>
+					<dependentTest omitted="0">AC</dependentTest>
+					<dependentTest enabled="1">MC</dependentTest>
+					<dependentTest enabled="1">Noise:1</dependentTest>
+					<dependentTest enabled="1">Noise</dependentTest>
+				</dependentTests>
+			</var>
+			<var>F
+				<value>4K</value>
+				<dependentTests>
+					<dependentTest enabled="1">Noise:1</dependentTest>
+					<dependentTest enabled="1">Noise</dependentTest>
+				</dependentTests>
+			</var>
+		</vars>
+		<overwritehistoryname>Interactive.0</overwritehistoryname>
+		<plottingoptions>
+			<plottingoption>plottingmode
+				<value>Append</value>
+			</plottingoption>
+			<plottingoption>plottype
+				<value>None</value>
+			</plottingoption>
+			<plottingoption>usewaveformtemplate
+				<value>no</value>
+			</plottingoption>
+			<plottingoption>useMaestroPlottingTemplate
+				<value>yes</value>
+			</plottingoption>
+			<plottingoption>waveformtemplate
+				<value></value>
+			</plottingoption>
+			<plottingoption>allplottingtemplates
+				<value></value>
+			</plottingoption>
+			<plottingoption>defaultplottingtemplate
+				<value></value>
+			</plottingoption>
+			<plottingoption>distributedplot_enabled
+				<value>no</value>
+			</plottingoption>
+		</plottingoptions>
+		<disabledtests>
+			<test>AC:1</test>
+			<test>AC</test>
+			<test>Noise</test>
+			<test>MC</test>
+		</disabledtests>
+		<jobpolicyname>ADE XL Default</jobpolicyname>
+		<allcornersenabled>0</allcornersenabled>
+		<runoptions>
+			<mode>Monte Carlo Sampling
+				<runoption>mcmethod
+					<value>all</value>
+				</runoption>
+				<runoption>mcnumpoints
+					<value>100</value>
+				</runoption>
+				<runoption>mcnumbins
+					<value></value>
+				</runoption>
+				<runoption>mcStopEarly
+					<value>0</value>
+				</runoption>
+				<runoption>mcStopMethod
+					<value>Significance Test</value>
+				</runoption>
+				<runoption>samplingmode
+					<value>lds</value>
+				</runoption>
+				<runoption>saveprocess
+					<value>0</value>
+				</runoption>
+				<runoption>savemismatch
+					<value>0</value>
+				</runoption>
+				<runoption>parasiticanalysis
+					<value>0</value>
+				</runoption>
+				<runoption>mcreferencepoint
+					<value>0</value>
+				</runoption>
+				<runoption>donominal
+					<value>1</value>
+				</runoption>
+				<runoption>saveallplots
+					<value>1</value>
+				</runoption>
+				<runoption>montecarloseed
+					<value></value>
+				</runoption>
+				<runoption>mcstartingrunnumber
+					<value></value>
+				</runoption>
+				<runoption>dumpParamMode
+					<value>no</value>
+				</runoption>
+			</mode>
+		</runoptions>
+	</active>
+	<history>History
+		<historyentry assemblerOrExplorer="adexl" roOrView="view">Interactive.249
+			<checkpoint>
+				<corners>
+					<corner enabled="1">_default</corner>
+					<corner enabled="1">C0
+						<vars>
+							<var>temperature
+								<value>-40 80</value>
+							</var>
+							<var>VDD
+								<value>3.63 2.97</value>
+							</var>
+						</vars>
+						<models>
+							<model enabled="1">processOption.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/processOption.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="1">cmos53.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cmos53.scs</modelfile>
+								<modelsection>"cmoswo" "cmoswp" "cmosws" "cmoswz"</modelsection>
+							</model>
+							<model enabled="1">res.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/res.scs</modelfile>
+								<modelsection>"reswp" "resws"</modelsection>
+							</model>
+							<model enabled="1">cap.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cap.scs</modelfile>
+								<modelsection>"capwp" "capws"</modelsection>
+							</model>
+							<model enabled="0">bip.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/bip.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">ind.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/ind.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">esddiode.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/esddiode.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+						</models>
+					</corner>
+				</corners>
+				<extensions>
+					<extension>Parasitics
+						<callback>_parSetupDBExtensionCB</callback>
+						<iconvalue></iconvalue>
+						<icontype></icontype>
+					</extension>
+				</extensions>
+				<currentmode>Single Run, Sweeps and Corners</currentmode>
+				<overwritehistory>0</overwritehistory>
+				<tests>
+					<test enabled="1">AC
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>AC_none_Interactive.249</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">Noise
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>Noise_none_Interactive.249</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">MC
+						<tool>ADE</tool>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+							<output>Poles
+								<evalType>point</evalType>
+							</output>
+							<output>Zeros
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>MC_AC:1_state_Interactive.249</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>AC:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+					<test enabled="1">Noise:1
+						<tool>ADE</tool>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_Noise:1_state_Interactive.249</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+				</tests>
+				<vars>
+					<var enabled="1">VCM_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VCM_DC
+						<value>1.6</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD
+						<value>3.3</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_DC
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var enabled="1">VCM_AMP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AMP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_FREQ
+						<value>50</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>F
+						<value>4K</value>
+						<dependentTests>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+				</vars>
+				<overwritehistoryname>Interactive.0</overwritehistoryname>
+				<plottingoptions>
+					<plottingoption>plottingmode
+						<value>Append</value>
+					</plottingoption>
+					<plottingoption>plottype
+						<value>None</value>
+					</plottingoption>
+					<plottingoption>usewaveformtemplate
+						<value>no</value>
+					</plottingoption>
+					<plottingoption>useMaestroPlottingTemplate
+						<value>yes</value>
+					</plottingoption>
+					<plottingoption>waveformtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>allplottingtemplates
+						<value></value>
+					</plottingoption>
+					<plottingoption>defaultplottingtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>distributedplot_enabled
+						<value>no</value>
+					</plottingoption>
+				</plottingoptions>
+				<disabledtests>
+					<test>AC:1</test>
+					<test>AC</test>
+					<test>Noise:1</test>
+					<test>MC</test>
+				</disabledtests>
+				<jobpolicyname>ADE XL Default</jobpolicyname>
+				<allcornersenabled>0</allcornersenabled>
+				<runoptions>
+					<mode>Monte Carlo Sampling
+						<runoption>mcmethod
+							<value>all</value>
+						</runoption>
+						<runoption>mcnumpoints
+							<value>100</value>
+						</runoption>
+						<runoption>mcnumbins
+							<value></value>
+						</runoption>
+						<runoption>mcStopEarly
+							<value>0</value>
+						</runoption>
+						<runoption>mcStopMethod
+							<value>Significance Test</value>
+						</runoption>
+						<runoption>samplingmode
+							<value>lds</value>
+						</runoption>
+						<runoption>saveprocess
+							<value>0</value>
+						</runoption>
+						<runoption>savemismatch
+							<value>0</value>
+						</runoption>
+						<runoption>parasiticanalysis
+							<value>0</value>
+						</runoption>
+						<runoption>mcreferencepoint
+							<value>0</value>
+						</runoption>
+						<runoption>donominal
+							<value>1</value>
+						</runoption>
+						<runoption>saveallplots
+							<value>1</value>
+						</runoption>
+						<runoption>montecarloseed
+							<value></value>
+						</runoption>
+						<runoption>mcstartingrunnumber
+							<value></value>
+						</runoption>
+						<runoption>dumpParamMode
+							<value>no</value>
+						</runoption>
+					</mode>
+				</runoptions>
+				<sortVariableValues>0</sortVariableValues>
+			</checkpoint>
+			<timestamp>Apr 16 06:07:24 2026</timestamp>
+			<uuid>{05c8de32-17e4-49fb-b091-54442b156633}</uuid>
+			<resultsname>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.249.rdb</resultsname>
+			<simresults>$AXL_SETUPDB_DIR/results/data/Interactive.249.rdb</simresults>
+			<rawdatadelstrategy>SaveAll
+				<simdatasavemode>All</simdatasavemode>
+			</rawdatadelstrategy>
+			<saveevalerrorstrategy>SaveNone</saveevalerrorstrategy>
+			<netlistdelstrategy>SaveAll</netlistdelstrategy>
+			<uselocalpsfdir>false</uselocalpsfdir>
+			<localpsfdir>/tmp/il2244vt26_shreyav_shreyav_060724159</localpsfdir>
+			<psfdir>/home/shreyav/Project/Sim/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.249</psfdir>
+			<simdir>$AXL_PROJECT_DIR/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.249</simdir>
+			<gendatasheetplotsonsimulation>0</gendatasheetplotsonsimulation>
+			<runlog>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.249.log</runlog>
+			<runlogfile>$AXL_SETUPDB_DIR/results/data/Interactive.249.log</runlogfile>
+			<schematicpoint></schematicpoint>
+			<test>all</test>
+		</historyentry>
+		<historyentry assemblerOrExplorer="adexl" roOrView="view">Interactive.250
+			<checkpoint>
+				<corners>
+					<corner enabled="1">_default</corner>
+					<corner enabled="1">C0
+						<vars>
+							<var>temperature
+								<value>-40 80</value>
+							</var>
+							<var>VDD
+								<value>3.63 2.97</value>
+							</var>
+						</vars>
+						<models>
+							<model enabled="1">processOption.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/processOption.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="1">cmos53.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cmos53.scs</modelfile>
+								<modelsection>"cmoswo" "cmoswp" "cmosws" "cmoswz"</modelsection>
+							</model>
+							<model enabled="1">res.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/res.scs</modelfile>
+								<modelsection>"reswp" "resws"</modelsection>
+							</model>
+							<model enabled="1">cap.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cap.scs</modelfile>
+								<modelsection>"capwp" "capws"</modelsection>
+							</model>
+							<model enabled="0">bip.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/bip.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">ind.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/ind.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">esddiode.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/esddiode.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+						</models>
+					</corner>
+				</corners>
+				<extensions>
+					<extension>Parasitics
+						<callback>_parSetupDBExtensionCB</callback>
+						<iconvalue></iconvalue>
+						<icontype></icontype>
+					</extension>
+				</extensions>
+				<currentmode>Single Run, Sweeps and Corners</currentmode>
+				<overwritehistory>0</overwritehistory>
+				<tests>
+					<test enabled="1">AC
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>AC_none_Interactive.250</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">Noise
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>Noise_none_Interactive.250</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">MC
+						<tool>ADE</tool>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+							<output>Poles
+								<evalType>point</evalType>
+							</output>
+							<output>Zeros
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>MC_AC:1_state_Interactive.250</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>AC:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+					<test enabled="1">Noise:1
+						<tool>ADE</tool>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_Noise:1_state_Interactive.250</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+				</tests>
+				<vars>
+					<var enabled="1">VCM_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VCM_DC
+						<value>1.6</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD
+						<value>3.3</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_DC
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var enabled="1">VCM_AMP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AMP
+						<value>1m</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_FREQ
+						<value>50</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>F
+						<value>4K</value>
+						<dependentTests>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+				</vars>
+				<overwritehistoryname>Interactive.0</overwritehistoryname>
+				<plottingoptions>
+					<plottingoption>plottingmode
+						<value>Append</value>
+					</plottingoption>
+					<plottingoption>plottype
+						<value>None</value>
+					</plottingoption>
+					<plottingoption>usewaveformtemplate
+						<value>no</value>
+					</plottingoption>
+					<plottingoption>useMaestroPlottingTemplate
+						<value>yes</value>
+					</plottingoption>
+					<plottingoption>waveformtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>allplottingtemplates
+						<value></value>
+					</plottingoption>
+					<plottingoption>defaultplottingtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>distributedplot_enabled
+						<value>no</value>
+					</plottingoption>
+				</plottingoptions>
+				<disabledtests>
+					<test>AC:1</test>
+					<test>AC</test>
+					<test>Noise:1</test>
+					<test>MC</test>
+				</disabledtests>
+				<jobpolicyname>ADE XL Default</jobpolicyname>
+				<allcornersenabled>0</allcornersenabled>
+				<runoptions>
+					<mode>Monte Carlo Sampling
+						<runoption>mcmethod
+							<value>all</value>
+						</runoption>
+						<runoption>mcnumpoints
+							<value>100</value>
+						</runoption>
+						<runoption>mcnumbins
+							<value></value>
+						</runoption>
+						<runoption>mcStopEarly
+							<value>0</value>
+						</runoption>
+						<runoption>mcStopMethod
+							<value>Significance Test</value>
+						</runoption>
+						<runoption>samplingmode
+							<value>lds</value>
+						</runoption>
+						<runoption>saveprocess
+							<value>0</value>
+						</runoption>
+						<runoption>savemismatch
+							<value>0</value>
+						</runoption>
+						<runoption>parasiticanalysis
+							<value>0</value>
+						</runoption>
+						<runoption>mcreferencepoint
+							<value>0</value>
+						</runoption>
+						<runoption>donominal
+							<value>1</value>
+						</runoption>
+						<runoption>saveallplots
+							<value>1</value>
+						</runoption>
+						<runoption>montecarloseed
+							<value></value>
+						</runoption>
+						<runoption>mcstartingrunnumber
+							<value></value>
+						</runoption>
+						<runoption>dumpParamMode
+							<value>no</value>
+						</runoption>
+					</mode>
+				</runoptions>
+				<sortVariableValues>0</sortVariableValues>
+			</checkpoint>
+			<timestamp>Apr 16 06:15:58 2026</timestamp>
+			<uuid>{22eed23f-3e05-4eae-bf55-fe6ad15b64af}</uuid>
+			<resultsname>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.250.rdb</resultsname>
+			<simresults>$AXL_SETUPDB_DIR/results/data/Interactive.250.rdb</simresults>
+			<rawdatadelstrategy>SaveAll
+				<simdatasavemode>All</simdatasavemode>
+			</rawdatadelstrategy>
+			<saveevalerrorstrategy>SaveNone</saveevalerrorstrategy>
+			<netlistdelstrategy>SaveAll</netlistdelstrategy>
+			<uselocalpsfdir>false</uselocalpsfdir>
+			<localpsfdir>/tmp/il2244vt26_shreyav_shreyav_061559002</localpsfdir>
+			<psfdir>/home/shreyav/Project/Sim/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.250</psfdir>
+			<simdir>$AXL_PROJECT_DIR/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.250</simdir>
+			<gendatasheetplotsonsimulation>0</gendatasheetplotsonsimulation>
+			<runlog>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.250.log</runlog>
+			<runlogfile>$AXL_SETUPDB_DIR/results/data/Interactive.250.log</runlogfile>
+			<schematicpoint></schematicpoint>
+			<test>all</test>
+		</historyentry>
+		<historyentry assemblerOrExplorer="adexl" roOrView="view">Interactive.251
+			<checkpoint>
+				<corners>
+					<corner enabled="1">_default</corner>
+					<corner enabled="1">C0
+						<vars>
+							<var>temperature
+								<value>-40 80</value>
+							</var>
+							<var>VDD
+								<value>3.63 2.97</value>
+							</var>
+						</vars>
+						<models>
+							<model enabled="1">processOption.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/processOption.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="1">cmos53.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cmos53.scs</modelfile>
+								<modelsection>"cmoswo" "cmoswp" "cmosws" "cmoswz"</modelsection>
+							</model>
+							<model enabled="1">res.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/res.scs</modelfile>
+								<modelsection>"reswp" "resws"</modelsection>
+							</model>
+							<model enabled="1">cap.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cap.scs</modelfile>
+								<modelsection>"capwp" "capws"</modelsection>
+							</model>
+							<model enabled="0">bip.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/bip.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">ind.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/ind.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">esddiode.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/esddiode.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+						</models>
+					</corner>
+				</corners>
+				<extensions>
+					<extension>Parasitics
+						<callback>_parSetupDBExtensionCB</callback>
+						<iconvalue></iconvalue>
+						<icontype></icontype>
+					</extension>
+				</extensions>
+				<currentmode>Single Run, Sweeps and Corners</currentmode>
+				<overwritehistory>0</overwritehistory>
+				<tests>
+					<test enabled="1">AC
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>AC_none_Interactive.251</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">Noise
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>Noise_none_Interactive.251</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">MC
+						<tool>ADE</tool>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+							<output>Poles
+								<evalType>point</evalType>
+							</output>
+							<output>Zeros
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>MC_AC:1_state_Interactive.251</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>AC:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+					<test enabled="1">Noise:1
+						<tool>ADE</tool>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_Noise:1_state_Interactive.251</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+				</tests>
+				<vars>
+					<var enabled="1">VCM_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VCM_DC
+						<value>1.6</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD
+						<value>3.3</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_DC
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var enabled="1">VCM_AMP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AMP
+						<value>1m</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_FREQ
+						<value>50</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>F
+						<value>4K</value>
+						<dependentTests>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+				</vars>
+				<overwritehistoryname>Interactive.0</overwritehistoryname>
+				<plottingoptions>
+					<plottingoption>plottingmode
+						<value>Append</value>
+					</plottingoption>
+					<plottingoption>plottype
+						<value>None</value>
+					</plottingoption>
+					<plottingoption>usewaveformtemplate
+						<value>no</value>
+					</plottingoption>
+					<plottingoption>useMaestroPlottingTemplate
+						<value>yes</value>
+					</plottingoption>
+					<plottingoption>waveformtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>allplottingtemplates
+						<value></value>
+					</plottingoption>
+					<plottingoption>defaultplottingtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>distributedplot_enabled
+						<value>no</value>
+					</plottingoption>
+				</plottingoptions>
+				<disabledtests>
+					<test>AC:1</test>
+					<test>AC</test>
+					<test>Noise:1</test>
+					<test>MC</test>
+				</disabledtests>
+				<jobpolicyname>ADE XL Default</jobpolicyname>
+				<allcornersenabled>0</allcornersenabled>
+				<runoptions>
+					<mode>Monte Carlo Sampling
+						<runoption>mcmethod
+							<value>all</value>
+						</runoption>
+						<runoption>mcnumpoints
+							<value>100</value>
+						</runoption>
+						<runoption>mcnumbins
+							<value></value>
+						</runoption>
+						<runoption>mcStopEarly
+							<value>0</value>
+						</runoption>
+						<runoption>mcStopMethod
+							<value>Significance Test</value>
+						</runoption>
+						<runoption>samplingmode
+							<value>lds</value>
+						</runoption>
+						<runoption>saveprocess
+							<value>0</value>
+						</runoption>
+						<runoption>savemismatch
+							<value>0</value>
+						</runoption>
+						<runoption>parasiticanalysis
+							<value>0</value>
+						</runoption>
+						<runoption>mcreferencepoint
+							<value>0</value>
+						</runoption>
+						<runoption>donominal
+							<value>1</value>
+						</runoption>
+						<runoption>saveallplots
+							<value>1</value>
+						</runoption>
+						<runoption>montecarloseed
+							<value></value>
+						</runoption>
+						<runoption>mcstartingrunnumber
+							<value></value>
+						</runoption>
+						<runoption>dumpParamMode
+							<value>no</value>
+						</runoption>
+					</mode>
+				</runoptions>
+				<sortVariableValues>0</sortVariableValues>
+			</checkpoint>
+			<timestamp>Apr 16 06:20:51 2026</timestamp>
+			<uuid>{ddc6c9c2-86ea-4d99-bb4f-5739d047e3cf}</uuid>
+			<resultsname>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.251.rdb</resultsname>
+			<simresults>$AXL_SETUPDB_DIR/results/data/Interactive.251.rdb</simresults>
+			<rawdatadelstrategy>SaveAll
+				<simdatasavemode>All</simdatasavemode>
+			</rawdatadelstrategy>
+			<saveevalerrorstrategy>SaveNone</saveevalerrorstrategy>
+			<netlistdelstrategy>SaveAll</netlistdelstrategy>
+			<uselocalpsfdir>false</uselocalpsfdir>
+			<localpsfdir>/tmp/il2244vt26_shreyav_shreyav_062052153</localpsfdir>
+			<psfdir>/home/shreyav/Project/Sim/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.251</psfdir>
+			<simdir>$AXL_PROJECT_DIR/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.251</simdir>
+			<gendatasheetplotsonsimulation>0</gendatasheetplotsonsimulation>
+			<runlog>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.251.log</runlog>
+			<runlogfile>$AXL_SETUPDB_DIR/results/data/Interactive.251.log</runlogfile>
+			<schematicpoint></schematicpoint>
+			<test>all</test>
+		</historyentry>
+		<historyentry assemblerOrExplorer="adexl" roOrView="view">Interactive.252
+			<checkpoint>
+				<corners>
+					<corner enabled="1">_default</corner>
+					<corner enabled="1">C0
+						<vars>
+							<var>temperature
+								<value>-40 80</value>
+							</var>
+							<var>VDD
+								<value>3.63 2.97</value>
+							</var>
+						</vars>
+						<models>
+							<model enabled="1">processOption.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/processOption.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="1">cmos53.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cmos53.scs</modelfile>
+								<modelsection>"cmoswo" "cmoswp" "cmosws" "cmoswz"</modelsection>
+							</model>
+							<model enabled="1">res.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/res.scs</modelfile>
+								<modelsection>"reswp" "resws"</modelsection>
+							</model>
+							<model enabled="1">cap.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cap.scs</modelfile>
+								<modelsection>"capwp" "capws"</modelsection>
+							</model>
+							<model enabled="0">bip.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/bip.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">ind.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/ind.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">esddiode.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/esddiode.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+						</models>
+					</corner>
+				</corners>
+				<extensions>
+					<extension>Parasitics
+						<callback>_parSetupDBExtensionCB</callback>
+						<iconvalue></iconvalue>
+						<icontype></icontype>
+					</extension>
+				</extensions>
+				<currentmode>Single Run, Sweeps and Corners</currentmode>
+				<overwritehistory>0</overwritehistory>
+				<tests>
+					<test enabled="1">AC
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>AC_none_Interactive.252</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">Noise
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>Noise_none_Interactive.252</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">MC
+						<tool>ADE</tool>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+							<output>Poles
+								<evalType>point</evalType>
+							</output>
+							<output>Zeros
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>MC_AC:1_state_Interactive.252</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>AC:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+					<test enabled="1">Noise:1
+						<tool>ADE</tool>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_Noise:1_state_Interactive.252</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+				</tests>
+				<vars>
+					<var enabled="1">VCM_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VCM_DC
+						<value>1.6</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD
+						<value>3.3</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_DC
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var enabled="1">VCM_AMP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AMP
+						<value>1m</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_FREQ
+						<value>50</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>F
+						<value>4K</value>
+						<dependentTests>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+				</vars>
+				<overwritehistoryname>Interactive.0</overwritehistoryname>
+				<plottingoptions>
+					<plottingoption>plottingmode
+						<value>Append</value>
+					</plottingoption>
+					<plottingoption>plottype
+						<value>None</value>
+					</plottingoption>
+					<plottingoption>usewaveformtemplate
+						<value>no</value>
+					</plottingoption>
+					<plottingoption>useMaestroPlottingTemplate
+						<value>yes</value>
+					</plottingoption>
+					<plottingoption>waveformtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>allplottingtemplates
+						<value></value>
+					</plottingoption>
+					<plottingoption>defaultplottingtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>distributedplot_enabled
+						<value>no</value>
+					</plottingoption>
+				</plottingoptions>
+				<disabledtests>
+					<test>AC:1</test>
+					<test>AC</test>
+					<test>Noise:1</test>
+					<test>MC</test>
+				</disabledtests>
+				<jobpolicyname>ADE XL Default</jobpolicyname>
+				<allcornersenabled>0</allcornersenabled>
+				<runoptions>
+					<mode>Monte Carlo Sampling
+						<runoption>mcmethod
+							<value>all</value>
+						</runoption>
+						<runoption>mcnumpoints
+							<value>100</value>
+						</runoption>
+						<runoption>mcnumbins
+							<value></value>
+						</runoption>
+						<runoption>mcStopEarly
+							<value>0</value>
+						</runoption>
+						<runoption>mcStopMethod
+							<value>Significance Test</value>
+						</runoption>
+						<runoption>samplingmode
+							<value>lds</value>
+						</runoption>
+						<runoption>saveprocess
+							<value>0</value>
+						</runoption>
+						<runoption>savemismatch
+							<value>0</value>
+						</runoption>
+						<runoption>parasiticanalysis
+							<value>0</value>
+						</runoption>
+						<runoption>mcreferencepoint
+							<value>0</value>
+						</runoption>
+						<runoption>donominal
+							<value>1</value>
+						</runoption>
+						<runoption>saveallplots
+							<value>1</value>
+						</runoption>
+						<runoption>montecarloseed
+							<value></value>
+						</runoption>
+						<runoption>mcstartingrunnumber
+							<value></value>
+						</runoption>
+						<runoption>dumpParamMode
+							<value>no</value>
+						</runoption>
+					</mode>
+				</runoptions>
+				<sortVariableValues>0</sortVariableValues>
+			</checkpoint>
+			<timestamp>Apr 16 06:22:10 2026</timestamp>
+			<uuid>{7b5d6411-6615-4e99-b7cc-2c78c440cc26}</uuid>
+			<resultsname>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.252.rdb</resultsname>
+			<simresults>$AXL_SETUPDB_DIR/results/data/Interactive.252.rdb</simresults>
+			<rawdatadelstrategy>SaveAll
+				<simdatasavemode>All</simdatasavemode>
+			</rawdatadelstrategy>
+			<saveevalerrorstrategy>SaveNone</saveevalerrorstrategy>
+			<netlistdelstrategy>SaveAll</netlistdelstrategy>
+			<uselocalpsfdir>false</uselocalpsfdir>
+			<localpsfdir>/tmp/il2244vt26_shreyav_shreyav_062210334</localpsfdir>
+			<psfdir>/home/shreyav/Project/Sim/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.252</psfdir>
+			<simdir>$AXL_PROJECT_DIR/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.252</simdir>
+			<gendatasheetplotsonsimulation>0</gendatasheetplotsonsimulation>
+			<runlog>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.252.log</runlog>
+			<runlogfile>$AXL_SETUPDB_DIR/results/data/Interactive.252.log</runlogfile>
+			<schematicpoint></schematicpoint>
+			<test>all</test>
+		</historyentry>
+		<historyentry assemblerOrExplorer="adexl" roOrView="view">Interactive.253
+			<checkpoint>
+				<corners>
+					<corner enabled="1">_default</corner>
+					<corner enabled="1">C0
+						<vars>
+							<var>temperature
+								<value>-40 80</value>
+							</var>
+							<var>VDD
+								<value>3.63 2.97</value>
+							</var>
+						</vars>
+						<models>
+							<model enabled="1">processOption.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/processOption.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="1">cmos53.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cmos53.scs</modelfile>
+								<modelsection>"cmoswo" "cmoswp" "cmosws" "cmoswz"</modelsection>
+							</model>
+							<model enabled="1">res.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/res.scs</modelfile>
+								<modelsection>"reswp" "resws"</modelsection>
+							</model>
+							<model enabled="1">cap.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cap.scs</modelfile>
+								<modelsection>"capwp" "capws"</modelsection>
+							</model>
+							<model enabled="0">bip.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/bip.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">ind.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/ind.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">esddiode.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/esddiode.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+						</models>
+					</corner>
+				</corners>
+				<extensions>
+					<extension>Parasitics
+						<callback>_parSetupDBExtensionCB</callback>
+						<iconvalue></iconvalue>
+						<icontype></icontype>
+					</extension>
+				</extensions>
+				<currentmode>Single Run, Sweeps and Corners</currentmode>
+				<overwritehistory>0</overwritehistory>
+				<tests>
+					<test enabled="1">AC
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>AC_none_Interactive.253</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">Noise
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>Noise_none_Interactive.253</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">MC
+						<tool>ADE</tool>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+							<output>Poles
+								<evalType>point</evalType>
+							</output>
+							<output>Zeros
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>MC_AC:1_state_Interactive.253</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>AC:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+					<test enabled="1">Noise:1
+						<tool>ADE</tool>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_Noise:1_state_Interactive.253</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+				</tests>
+				<vars>
+					<var enabled="1">VCM_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VCM_DC
+						<value>1.6</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD
+						<value>3.3</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_DC
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var enabled="1">VCM_AMP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AMP
+						<value>1m</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_FREQ
+						<value>50</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>F
+						<value>4K</value>
+						<dependentTests>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+				</vars>
+				<overwritehistoryname>Interactive.0</overwritehistoryname>
+				<plottingoptions>
+					<plottingoption>plottingmode
+						<value>Append</value>
+					</plottingoption>
+					<plottingoption>plottype
+						<value>None</value>
+					</plottingoption>
+					<plottingoption>usewaveformtemplate
+						<value>no</value>
+					</plottingoption>
+					<plottingoption>useMaestroPlottingTemplate
+						<value>yes</value>
+					</plottingoption>
+					<plottingoption>waveformtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>allplottingtemplates
+						<value></value>
+					</plottingoption>
+					<plottingoption>defaultplottingtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>distributedplot_enabled
+						<value>no</value>
+					</plottingoption>
+				</plottingoptions>
+				<disabledtests>
+					<test>AC:1</test>
+					<test>AC</test>
+					<test>Noise:1</test>
+					<test>MC</test>
+				</disabledtests>
+				<jobpolicyname>ADE XL Default</jobpolicyname>
+				<allcornersenabled>0</allcornersenabled>
+				<runoptions>
+					<mode>Monte Carlo Sampling
+						<runoption>mcmethod
+							<value>all</value>
+						</runoption>
+						<runoption>mcnumpoints
+							<value>100</value>
+						</runoption>
+						<runoption>mcnumbins
+							<value></value>
+						</runoption>
+						<runoption>mcStopEarly
+							<value>0</value>
+						</runoption>
+						<runoption>mcStopMethod
+							<value>Significance Test</value>
+						</runoption>
+						<runoption>samplingmode
+							<value>lds</value>
+						</runoption>
+						<runoption>saveprocess
+							<value>0</value>
+						</runoption>
+						<runoption>savemismatch
+							<value>0</value>
+						</runoption>
+						<runoption>parasiticanalysis
+							<value>0</value>
+						</runoption>
+						<runoption>mcreferencepoint
+							<value>0</value>
+						</runoption>
+						<runoption>donominal
+							<value>1</value>
+						</runoption>
+						<runoption>saveallplots
+							<value>1</value>
+						</runoption>
+						<runoption>montecarloseed
+							<value></value>
+						</runoption>
+						<runoption>mcstartingrunnumber
+							<value></value>
+						</runoption>
+						<runoption>dumpParamMode
+							<value>no</value>
+						</runoption>
+					</mode>
+				</runoptions>
+				<sortVariableValues>0</sortVariableValues>
+			</checkpoint>
+			<timestamp>Apr 16 06:23:47 2026</timestamp>
+			<uuid>{8924875a-8c35-43aa-9040-7fc410c8a065}</uuid>
+			<resultsname>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.253.rdb</resultsname>
+			<simresults>$AXL_SETUPDB_DIR/results/data/Interactive.253.rdb</simresults>
+			<rawdatadelstrategy>SaveAll
+				<simdatasavemode>All</simdatasavemode>
+			</rawdatadelstrategy>
+			<saveevalerrorstrategy>SaveNone</saveevalerrorstrategy>
+			<netlistdelstrategy>SaveAll</netlistdelstrategy>
+			<uselocalpsfdir>false</uselocalpsfdir>
+			<localpsfdir>/tmp/il2244vt26_shreyav_shreyav_062348328</localpsfdir>
+			<psfdir>/home/shreyav/Project/Sim/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.253</psfdir>
+			<simdir>$AXL_PROJECT_DIR/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.253</simdir>
+			<gendatasheetplotsonsimulation>0</gendatasheetplotsonsimulation>
+			<runlog>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.253.log</runlog>
+			<runlogfile>$AXL_SETUPDB_DIR/results/data/Interactive.253.log</runlogfile>
+			<schematicpoint></schematicpoint>
+			<test>all</test>
+		</historyentry>
+		<historyentry assemblerOrExplorer="adexl" roOrView="view">Interactive.254
+			<checkpoint>
+				<corners>
+					<corner enabled="1">_default</corner>
+					<corner enabled="1">C0
+						<vars>
+							<var>temperature
+								<value>-40 80</value>
+							</var>
+							<var>VDD
+								<value>3.63 2.97</value>
+							</var>
+						</vars>
+						<models>
+							<model enabled="1">processOption.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/processOption.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="1">cmos53.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cmos53.scs</modelfile>
+								<modelsection>"cmoswo" "cmoswp" "cmosws" "cmoswz"</modelsection>
+							</model>
+							<model enabled="1">res.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/res.scs</modelfile>
+								<modelsection>"reswp" "resws"</modelsection>
+							</model>
+							<model enabled="1">cap.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cap.scs</modelfile>
+								<modelsection>"capwp" "capws"</modelsection>
+							</model>
+							<model enabled="0">bip.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/bip.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">ind.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/ind.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">esddiode.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/esddiode.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+						</models>
+					</corner>
+				</corners>
+				<extensions>
+					<extension>Parasitics
+						<callback>_parSetupDBExtensionCB</callback>
+						<iconvalue></iconvalue>
+						<icontype></icontype>
+					</extension>
+				</extensions>
+				<currentmode>Single Run, Sweeps and Corners</currentmode>
+				<overwritehistory>0</overwritehistory>
+				<tests>
+					<test enabled="1">AC
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>AC_none_Interactive.254</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">Noise
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>Noise_none_Interactive.254</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">MC
+						<tool>ADE</tool>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+							<output>Poles
+								<evalType>point</evalType>
+							</output>
+							<output>Zeros
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>MC_AC:1_state_Interactive.254</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>AC:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+					<test enabled="1">Noise:1
+						<tool>ADE</tool>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_Noise:1_state_Interactive.254</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+				</tests>
+				<vars>
+					<var enabled="1">VCM_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VCM_DC
+						<value>1.6</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD
+						<value>3.3</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_DC
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var enabled="1">VCM_AMP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AMP
+						<value>1m</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_FREQ
+						<value>50</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>F
+						<value>4K</value>
+						<dependentTests>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+				</vars>
+				<overwritehistoryname>Interactive.0</overwritehistoryname>
+				<plottingoptions>
+					<plottingoption>plottingmode
+						<value>Append</value>
+					</plottingoption>
+					<plottingoption>plottype
+						<value>None</value>
+					</plottingoption>
+					<plottingoption>usewaveformtemplate
+						<value>no</value>
+					</plottingoption>
+					<plottingoption>useMaestroPlottingTemplate
+						<value>yes</value>
+					</plottingoption>
+					<plottingoption>waveformtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>allplottingtemplates
+						<value></value>
+					</plottingoption>
+					<plottingoption>defaultplottingtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>distributedplot_enabled
+						<value>no</value>
+					</plottingoption>
+				</plottingoptions>
+				<disabledtests>
+					<test>AC:1</test>
+					<test>AC</test>
+					<test>Noise:1</test>
+					<test>MC</test>
+				</disabledtests>
+				<jobpolicyname>ADE XL Default</jobpolicyname>
+				<allcornersenabled>0</allcornersenabled>
+				<runoptions>
+					<mode>Monte Carlo Sampling
+						<runoption>mcmethod
+							<value>all</value>
+						</runoption>
+						<runoption>mcnumpoints
+							<value>100</value>
+						</runoption>
+						<runoption>mcnumbins
+							<value></value>
+						</runoption>
+						<runoption>mcStopEarly
+							<value>0</value>
+						</runoption>
+						<runoption>mcStopMethod
+							<value>Significance Test</value>
+						</runoption>
+						<runoption>samplingmode
+							<value>lds</value>
+						</runoption>
+						<runoption>saveprocess
+							<value>0</value>
+						</runoption>
+						<runoption>savemismatch
+							<value>0</value>
+						</runoption>
+						<runoption>parasiticanalysis
+							<value>0</value>
+						</runoption>
+						<runoption>mcreferencepoint
+							<value>0</value>
+						</runoption>
+						<runoption>donominal
+							<value>1</value>
+						</runoption>
+						<runoption>saveallplots
+							<value>1</value>
+						</runoption>
+						<runoption>montecarloseed
+							<value></value>
+						</runoption>
+						<runoption>mcstartingrunnumber
+							<value></value>
+						</runoption>
+						<runoption>dumpParamMode
+							<value>no</value>
+						</runoption>
+					</mode>
+				</runoptions>
+				<sortVariableValues>0</sortVariableValues>
+			</checkpoint>
+			<timestamp>Apr 16 06:25:03 2026</timestamp>
+			<uuid>{1cb974a0-5d86-4ad8-a1f2-cb75325578ab}</uuid>
+			<resultsname>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.254.rdb</resultsname>
+			<simresults>$AXL_SETUPDB_DIR/results/data/Interactive.254.rdb</simresults>
+			<rawdatadelstrategy>SaveAll
+				<simdatasavemode>All</simdatasavemode>
+			</rawdatadelstrategy>
+			<saveevalerrorstrategy>SaveNone</saveevalerrorstrategy>
+			<netlistdelstrategy>SaveAll</netlistdelstrategy>
+			<uselocalpsfdir>false</uselocalpsfdir>
+			<localpsfdir>/tmp/il2244vt26_shreyav_shreyav_062503621</localpsfdir>
+			<psfdir>/home/shreyav/Project/Sim/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.254</psfdir>
+			<simdir>$AXL_PROJECT_DIR/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.254</simdir>
+			<gendatasheetplotsonsimulation>0</gendatasheetplotsonsimulation>
+			<runlog>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/Interactive.254.log</runlog>
+			<runlogfile>$AXL_SETUPDB_DIR/results/data/Interactive.254.log</runlogfile>
+			<schematicpoint></schematicpoint>
+			<test>all</test>
+		</historyentry>
+		<historyentry assemblerOrExplorer="adexl" roOrView="view">MonteCarlo.3
+			<checkpoint>
+				<corners>
+					<corner enabled="1">_default</corner>
+					<corner enabled="1">C0
+						<vars>
+							<var>temperature
+								<value>-40 80</value>
+							</var>
+							<var>VDD
+								<value>3.63 2.97</value>
+							</var>
+						</vars>
+						<models>
+							<model enabled="1">processOption.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/processOption.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="1">cmos53.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cmos53.scs</modelfile>
+								<modelsection>"cmoswo" "cmoswp" "cmosws" "cmoswz"</modelsection>
+							</model>
+							<model enabled="1">res.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/res.scs</modelfile>
+								<modelsection>"reswp" "resws"</modelsection>
+							</model>
+							<model enabled="1">cap.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cap.scs</modelfile>
+								<modelsection>"capwp" "capws"</modelsection>
+							</model>
+							<model enabled="0">bip.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/bip.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">ind.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/ind.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">esddiode.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/esddiode.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+						</models>
+					</corner>
+				</corners>
+				<extensions>
+					<extension>Parasitics
+						<callback>_parSetupDBExtensionCB</callback>
+						<iconvalue></iconvalue>
+						<icontype></icontype>
+					</extension>
+				</extensions>
+				<currentmode>Monte Carlo Sampling</currentmode>
+				<overwritehistory>0</overwritehistory>
+				<tests>
+					<test enabled="1">AC
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>AC_none_MonteCarlo.3</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">Noise
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>Noise_none_MonteCarlo.3</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">MC
+						<tool>ADE</tool>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+							<output>Poles
+								<evalType>point</evalType>
+							</output>
+							<output>Zeros
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>MC_AC:1_state_MonteCarlo.3</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>AC:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+					<test enabled="1">Noise:1
+						<tool>ADE</tool>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_Noise:1_state_MonteCarlo.3</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+				</tests>
+				<vars>
+					<var enabled="1">VCM_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VCM_DC
+						<value>1.6</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD
+						<value>3.3</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_DC
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var enabled="1">VCM_AMP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AMP
+						<value>1m</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_FREQ
+						<value>50</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>F
+						<value>4K</value>
+						<dependentTests>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+				</vars>
+				<overwritehistoryname>Interactive.0</overwritehistoryname>
+				<plottingoptions>
+					<plottingoption>plottingmode
+						<value>Append</value>
+					</plottingoption>
+					<plottingoption>plottype
+						<value>None</value>
+					</plottingoption>
+					<plottingoption>usewaveformtemplate
+						<value>no</value>
+					</plottingoption>
+					<plottingoption>useMaestroPlottingTemplate
+						<value>yes</value>
+					</plottingoption>
+					<plottingoption>waveformtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>allplottingtemplates
+						<value></value>
+					</plottingoption>
+					<plottingoption>defaultplottingtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>distributedplot_enabled
+						<value>no</value>
+					</plottingoption>
+				</plottingoptions>
+				<disabledtests>
+					<test>AC:1</test>
+					<test>AC</test>
+					<test>Noise</test>
+					<test>MC</test>
+				</disabledtests>
+				<jobpolicyname>ADE XL Default</jobpolicyname>
+				<allcornersenabled>0</allcornersenabled>
+				<runoptions>
+					<mode>Monte Carlo Sampling
+						<runoption>mcmethod
+							<value>all</value>
+						</runoption>
+						<runoption>mcnumpoints
+							<value>100</value>
+						</runoption>
+						<runoption>mcnumbins
+							<value></value>
+						</runoption>
+						<runoption>mcStopEarly
+							<value>0</value>
+						</runoption>
+						<runoption>mcStopMethod
+							<value>Significance Test</value>
+						</runoption>
+						<runoption>samplingmode
+							<value>lds</value>
+						</runoption>
+						<runoption>saveprocess
+							<value>0</value>
+						</runoption>
+						<runoption>savemismatch
+							<value>0</value>
+						</runoption>
+						<runoption>parasiticanalysis
+							<value>0</value>
+						</runoption>
+						<runoption>mcreferencepoint
+							<value>0</value>
+						</runoption>
+						<runoption>donominal
+							<value>1</value>
+						</runoption>
+						<runoption>saveallplots
+							<value>1</value>
+						</runoption>
+						<runoption>montecarloseed
+							<value></value>
+						</runoption>
+						<runoption>mcstartingrunnumber
+							<value></value>
+						</runoption>
+						<runoption>dumpParamMode
+							<value>no</value>
+						</runoption>
+					</mode>
+				</runoptions>
+				<sortVariableValues>0</sortVariableValues>
+			</checkpoint>
+			<timestamp>Apr 16 06:26:27 2026</timestamp>
+			<uuid>{9a0a0461-72f4-4850-ba07-799119e18b3c}</uuid>
+			<resultsname>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/MonteCarlo.3.rdb</resultsname>
+			<simresults>$AXL_SETUPDB_DIR/results/data/MonteCarlo.3.rdb</simresults>
+			<rawdatadelstrategy>SaveAll
+				<simdatasavemode>All</simdatasavemode>
+			</rawdatadelstrategy>
+			<saveevalerrorstrategy>SaveNone</saveevalerrorstrategy>
+			<netlistdelstrategy>SaveAll</netlistdelstrategy>
+			<uselocalpsfdir>false</uselocalpsfdir>
+			<localpsfdir>/tmp/il2244vt26_shreyav_shreyav_062627888</localpsfdir>
+			<psfdir>/home/shreyav/Project/Sim/instrumentation_amplifier/ia_tb_ac/adexl/results/data/MonteCarlo.3</psfdir>
+			<simdir>$AXL_PROJECT_DIR/instrumentation_amplifier/ia_tb_ac/adexl/results/data/MonteCarlo.3</simdir>
+			<gendatasheetplotsonsimulation>0</gendatasheetplotsonsimulation>
+			<runlog>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/MonteCarlo.3.log</runlog>
+			<runlogfile>$AXL_SETUPDB_DIR/results/data/MonteCarlo.3.log</runlogfile>
+			<schematicpoint></schematicpoint>
+			<test>all</test>
+		</historyentry>
+		<historyentry assemblerOrExplorer="adexl" roOrView="view">MonteCarlo.4
+			<checkpoint>
+				<corners>
+					<corner enabled="1">_default</corner>
+					<corner enabled="1">C0
+						<vars>
+							<var>temperature
+								<value>-40 80</value>
+							</var>
+							<var>VDD
+								<value>3.63 2.97</value>
+							</var>
+						</vars>
+						<models>
+							<model enabled="1">processOption.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/processOption.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="1">cmos53.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cmos53.scs</modelfile>
+								<modelsection>"cmoswo" "cmoswp" "cmosws" "cmoswz"</modelsection>
+							</model>
+							<model enabled="1">res.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/res.scs</modelfile>
+								<modelsection>"reswp" "resws"</modelsection>
+							</model>
+							<model enabled="1">cap.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cap.scs</modelfile>
+								<modelsection>"capwp" "capws"</modelsection>
+							</model>
+							<model enabled="0">bip.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/bip.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">ind.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/ind.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">esddiode.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/esddiode.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+						</models>
+					</corner>
+				</corners>
+				<extensions>
+					<extension>Parasitics
+						<callback>_parSetupDBExtensionCB</callback>
+						<iconvalue></iconvalue>
+						<icontype></icontype>
+					</extension>
+				</extensions>
+				<currentmode>Monte Carlo Sampling</currentmode>
+				<overwritehistory>0</overwritehistory>
+				<tests>
+					<test enabled="1">AC
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>AC_none_MonteCarlo.4</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">Noise
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>Noise_none_MonteCarlo.4</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">MC
+						<tool>ADE</tool>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+							<output>Poles
+								<evalType>point</evalType>
+							</output>
+							<output>Zeros
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>MC_AC:1_state_MonteCarlo.4</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>AC:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+					<test enabled="1">Noise:1
+						<tool>ADE</tool>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_Noise:1_state_MonteCarlo.4</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+				</tests>
+				<vars>
+					<var enabled="1">VCM_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VCM_DC
+						<value>1.6</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD
+						<value>3.3</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_DC
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var enabled="1">VCM_AMP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AMP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_FREQ
+						<value>50</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>F
+						<value>4K</value>
+						<dependentTests>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+				</vars>
+				<overwritehistoryname>Interactive.0</overwritehistoryname>
+				<plottingoptions>
+					<plottingoption>plottingmode
+						<value>Append</value>
+					</plottingoption>
+					<plottingoption>plottype
+						<value>None</value>
+					</plottingoption>
+					<plottingoption>usewaveformtemplate
+						<value>no</value>
+					</plottingoption>
+					<plottingoption>useMaestroPlottingTemplate
+						<value>yes</value>
+					</plottingoption>
+					<plottingoption>waveformtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>allplottingtemplates
+						<value></value>
+					</plottingoption>
+					<plottingoption>defaultplottingtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>distributedplot_enabled
+						<value>no</value>
+					</plottingoption>
+				</plottingoptions>
+				<disabledtests>
+					<test>AC:1</test>
+					<test>AC</test>
+					<test>Noise</test>
+					<test>MC</test>
+				</disabledtests>
+				<jobpolicyname>ADE XL Default</jobpolicyname>
+				<allcornersenabled>0</allcornersenabled>
+				<runoptions>
+					<mode>Monte Carlo Sampling
+						<runoption>mcmethod
+							<value>all</value>
+						</runoption>
+						<runoption>mcnumpoints
+							<value>100</value>
+						</runoption>
+						<runoption>mcnumbins
+							<value></value>
+						</runoption>
+						<runoption>mcStopEarly
+							<value>0</value>
+						</runoption>
+						<runoption>mcStopMethod
+							<value>Significance Test</value>
+						</runoption>
+						<runoption>samplingmode
+							<value>lds</value>
+						</runoption>
+						<runoption>saveprocess
+							<value>0</value>
+						</runoption>
+						<runoption>savemismatch
+							<value>0</value>
+						</runoption>
+						<runoption>parasiticanalysis
+							<value>0</value>
+						</runoption>
+						<runoption>mcreferencepoint
+							<value>0</value>
+						</runoption>
+						<runoption>donominal
+							<value>1</value>
+						</runoption>
+						<runoption>saveallplots
+							<value>1</value>
+						</runoption>
+						<runoption>montecarloseed
+							<value></value>
+						</runoption>
+						<runoption>mcstartingrunnumber
+							<value></value>
+						</runoption>
+						<runoption>dumpParamMode
+							<value>no</value>
+						</runoption>
+					</mode>
+				</runoptions>
+				<sortVariableValues>0</sortVariableValues>
+			</checkpoint>
+			<timestamp>Apr 16 06:27:09 2026</timestamp>
+			<uuid>{89d7b6c1-c37e-4506-b58b-9d2d9fa21b81}</uuid>
+			<resultsname>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/MonteCarlo.4.rdb</resultsname>
+			<simresults>$AXL_SETUPDB_DIR/results/data/MonteCarlo.4.rdb</simresults>
+			<rawdatadelstrategy>SaveAll
+				<simdatasavemode>All</simdatasavemode>
+			</rawdatadelstrategy>
+			<saveevalerrorstrategy>SaveNone</saveevalerrorstrategy>
+			<netlistdelstrategy>SaveAll</netlistdelstrategy>
+			<uselocalpsfdir>false</uselocalpsfdir>
+			<localpsfdir>/tmp/il2244vt26_shreyav_shreyav_062710131</localpsfdir>
+			<psfdir>/home/shreyav/Project/Sim/instrumentation_amplifier/ia_tb_ac/adexl/results/data/MonteCarlo.4</psfdir>
+			<simdir>$AXL_PROJECT_DIR/instrumentation_amplifier/ia_tb_ac/adexl/results/data/MonteCarlo.4</simdir>
+			<gendatasheetplotsonsimulation>0</gendatasheetplotsonsimulation>
+			<runlog>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/MonteCarlo.4.log</runlog>
+			<runlogfile>$AXL_SETUPDB_DIR/results/data/MonteCarlo.4.log</runlogfile>
+			<schematicpoint></schematicpoint>
+			<test>all</test>
+		</historyentry>
+		<historyentry assemblerOrExplorer="adexl" roOrView="view">MonteCarlo.5
+			<checkpoint>
+				<corners>
+					<corner enabled="1">_default</corner>
+					<corner enabled="1">C0
+						<vars>
+							<var>temperature
+								<value>-40 80</value>
+							</var>
+							<var>VDD
+								<value>3.63 2.97</value>
+							</var>
+						</vars>
+						<models>
+							<model enabled="1">processOption.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/processOption.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="1">cmos53.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cmos53.scs</modelfile>
+								<modelsection>"cmoswo" "cmoswp" "cmosws" "cmoswz"</modelsection>
+							</model>
+							<model enabled="1">res.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/res.scs</modelfile>
+								<modelsection>"reswp" "resws"</modelsection>
+							</model>
+							<model enabled="1">cap.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cap.scs</modelfile>
+								<modelsection>"capwp" "capws"</modelsection>
+							</model>
+							<model enabled="0">bip.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/bip.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">ind.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/ind.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">esddiode.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/esddiode.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+						</models>
+					</corner>
+				</corners>
+				<extensions>
+					<extension>Parasitics
+						<callback>_parSetupDBExtensionCB</callback>
+						<iconvalue></iconvalue>
+						<icontype></icontype>
+					</extension>
+				</extensions>
+				<currentmode>Monte Carlo Sampling</currentmode>
+				<overwritehistory>0</overwritehistory>
+				<tests>
+					<test enabled="1">AC
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>AC_none_MonteCarlo.5</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">Noise
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>Noise_none_MonteCarlo.5</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">MC
+						<tool>ADE</tool>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+							<output>Poles
+								<evalType>point</evalType>
+							</output>
+							<output>Zeros
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>MC_AC:1_state_MonteCarlo.5</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>AC:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+					<test enabled="1">Noise:1
+						<tool>ADE</tool>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_Noise:1_state_MonteCarlo.5</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+				</tests>
+				<vars>
+					<var enabled="1">VCM_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VCM_DC
+						<value>1.6</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD
+						<value>3.3</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_DC
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var enabled="1">VCM_AMP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AMP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_FREQ
+						<value>50</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>F
+						<value>4K</value>
+						<dependentTests>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+				</vars>
+				<overwritehistoryname>Interactive.0</overwritehistoryname>
+				<plottingoptions>
+					<plottingoption>plottingmode
+						<value>Append</value>
+					</plottingoption>
+					<plottingoption>plottype
+						<value>None</value>
+					</plottingoption>
+					<plottingoption>usewaveformtemplate
+						<value>no</value>
+					</plottingoption>
+					<plottingoption>useMaestroPlottingTemplate
+						<value>yes</value>
+					</plottingoption>
+					<plottingoption>waveformtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>allplottingtemplates
+						<value></value>
+					</plottingoption>
+					<plottingoption>defaultplottingtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>distributedplot_enabled
+						<value>no</value>
+					</plottingoption>
+				</plottingoptions>
+				<disabledtests>
+					<test>AC:1</test>
+					<test>AC</test>
+					<test>Noise</test>
+					<test>MC</test>
+				</disabledtests>
+				<jobpolicyname>ADE XL Default</jobpolicyname>
+				<allcornersenabled>0</allcornersenabled>
+				<runoptions>
+					<mode>Monte Carlo Sampling
+						<runoption>mcmethod
+							<value>all</value>
+						</runoption>
+						<runoption>mcnumpoints
+							<value>100</value>
+						</runoption>
+						<runoption>mcnumbins
+							<value></value>
+						</runoption>
+						<runoption>mcStopEarly
+							<value>0</value>
+						</runoption>
+						<runoption>mcStopMethod
+							<value>Significance Test</value>
+						</runoption>
+						<runoption>samplingmode
+							<value>lds</value>
+						</runoption>
+						<runoption>saveprocess
+							<value>0</value>
+						</runoption>
+						<runoption>savemismatch
+							<value>0</value>
+						</runoption>
+						<runoption>parasiticanalysis
+							<value>0</value>
+						</runoption>
+						<runoption>mcreferencepoint
+							<value>0</value>
+						</runoption>
+						<runoption>donominal
+							<value>1</value>
+						</runoption>
+						<runoption>saveallplots
+							<value>1</value>
+						</runoption>
+						<runoption>montecarloseed
+							<value></value>
+						</runoption>
+						<runoption>mcstartingrunnumber
+							<value></value>
+						</runoption>
+						<runoption>dumpParamMode
+							<value>no</value>
+						</runoption>
+					</mode>
+				</runoptions>
+				<sortVariableValues>0</sortVariableValues>
+			</checkpoint>
+			<timestamp>Apr 16 08:23:05 2026</timestamp>
+			<uuid>{fb99f0d9-4d4c-4ff3-85f7-a569fc7ddb47}</uuid>
+			<resultsname>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/MonteCarlo.5.rdb</resultsname>
+			<simresults>$AXL_SETUPDB_DIR/results/data/MonteCarlo.5.rdb</simresults>
+			<rawdatadelstrategy>SaveAll
+				<simdatasavemode>All</simdatasavemode>
+			</rawdatadelstrategy>
+			<saveevalerrorstrategy>SaveNone</saveevalerrorstrategy>
+			<netlistdelstrategy>SaveAll</netlistdelstrategy>
+			<uselocalpsfdir>false</uselocalpsfdir>
+			<localpsfdir>/tmp/il2244vt26_shreyav_shreyav_082305965</localpsfdir>
+			<psfdir>/home/shreyav/Project/Sim/instrumentation_amplifier/ia_tb_ac/adexl/results/data/MonteCarlo.5</psfdir>
+			<simdir>$AXL_PROJECT_DIR/instrumentation_amplifier/ia_tb_ac/adexl/results/data/MonteCarlo.5</simdir>
+			<gendatasheetplotsonsimulation>0</gendatasheetplotsonsimulation>
+			<runlog>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/MonteCarlo.5.log</runlog>
+			<runlogfile>$AXL_SETUPDB_DIR/results/data/MonteCarlo.5.log</runlogfile>
+			<schematicpoint></schematicpoint>
+			<test>all</test>
+		</historyentry>
+		<historyentry assemblerOrExplorer="adexl" roOrView="view">MonteCarlo.6
+			<checkpoint>
+				<corners>
+					<corner enabled="1">_default</corner>
+					<corner enabled="1">C0
+						<vars>
+							<var>temperature
+								<value>-40 80</value>
+							</var>
+							<var>VDD
+								<value>3.63 2.97</value>
+							</var>
+						</vars>
+						<models>
+							<model enabled="1">processOption.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/processOption.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="1">cmos53.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cmos53.scs</modelfile>
+								<modelsection>"cmoswo" "cmoswp" "cmosws" "cmoswz"</modelsection>
+							</model>
+							<model enabled="1">res.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/res.scs</modelfile>
+								<modelsection>"reswp" "resws"</modelsection>
+							</model>
+							<model enabled="1">cap.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/cap.scs</modelfile>
+								<modelsection>"capwp" "capws"</modelsection>
+							</model>
+							<model enabled="0">bip.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/bip.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">ind.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/ind.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+							<model enabled="0">esddiode.scs
+								<modeltest>All</modeltest>
+								<modelblock>Global</modelblock>
+								<modelfile>/opt/pdk/ams/410/spectre/c35/esddiode.scs</modelfile>
+								<modelsection></modelsection>
+							</model>
+						</models>
+					</corner>
+				</corners>
+				<extensions>
+					<extension>Parasitics
+						<callback>_parSetupDBExtensionCB</callback>
+						<iconvalue></iconvalue>
+						<icontype></icontype>
+					</extension>
+				</extensions>
+				<currentmode>Monte Carlo Sampling</currentmode>
+				<overwritehistory>0</overwritehistory>
+				<tests>
+					<test enabled="1">AC
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>AC_none_MonteCarlo.6</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">Noise
+						<tool>ADE</tool>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>state
+								<value>Noise_none_MonteCarlo.6</value>
+							</option>
+						</tooloptions>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+					</test>
+					<test enabled="1">MC
+						<tool>ADE</tool>
+						<outputs>
+							<output>nil
+								<evalType>point</evalType>
+							</output>
+							<output>Poles
+								<evalType>point</evalType>
+							</output>
+							<output>Zeros
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>MC_AC:1_state_MonteCarlo.6</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>AC:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+					<test enabled="1">Noise:1
+						<tool>ADE</tool>
+						<outputs>
+							<output>vh('pss "/VOUT")
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(db(vh('pss "/VOUT")) 2)
+								<evalType>point</evalType>
+							</output>
+							<output>harmonic(mag(vh('pss "/VOUT")) 1)
+								<evalType>point</evalType>
+							</output>
+							<output>(harmonic(db(vh('pss "/VOUT")) 1) - harmonic(db(vh('pss "/VOUT")) 2))
+								<evalType>point</evalType>
+							</output>
+						</outputs>
+						<tooloptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_Noise:1_state_MonteCarlo.6</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</tooloptions>
+						<prerunscript>0</prerunscript>
+						<origoptions>
+							<option>cell
+								<value>ia_tb_ac</value>
+							</option>
+							<option>lib
+								<value>instrumentation_amplifier</value>
+							</option>
+							<option>path
+								<value>$AXL_SETUPDB_DIR/test_states</value>
+							</option>
+							<option>sim
+								<value>spectre</value>
+							</option>
+							<option>state
+								<value>Noise:1_state</value>
+							</option>
+							<option>view
+								<value>schematic</value>
+							</option>
+						</origoptions>
+					</test>
+				</tests>
+				<vars>
+					<var enabled="1">VCM_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VCM_DC
+						<value>1.6</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD
+						<value>3.3</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VDD_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AC
+						<value>1</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_DC
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_STEP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest enabled="1">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var enabled="1">VCM_AMP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_AMP
+						<value>0</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>VIN_FREQ
+						<value>50</value>
+						<dependentTests>
+							<dependentTest omitted="0">AC</dependentTest>
+							<dependentTest enabled="1">MC</dependentTest>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+					<var>F
+						<value>4K</value>
+						<dependentTests>
+							<dependentTest enabled="1">Noise:1</dependentTest>
+							<dependentTest enabled="1">Noise</dependentTest>
+						</dependentTests>
+					</var>
+				</vars>
+				<overwritehistoryname>Interactive.0</overwritehistoryname>
+				<plottingoptions>
+					<plottingoption>plottingmode
+						<value>Append</value>
+					</plottingoption>
+					<plottingoption>plottype
+						<value>None</value>
+					</plottingoption>
+					<plottingoption>usewaveformtemplate
+						<value>no</value>
+					</plottingoption>
+					<plottingoption>useMaestroPlottingTemplate
+						<value>yes</value>
+					</plottingoption>
+					<plottingoption>waveformtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>allplottingtemplates
+						<value></value>
+					</plottingoption>
+					<plottingoption>defaultplottingtemplate
+						<value></value>
+					</plottingoption>
+					<plottingoption>distributedplot_enabled
+						<value>no</value>
+					</plottingoption>
+				</plottingoptions>
+				<disabledtests>
+					<test>AC:1</test>
+					<test>AC</test>
+					<test>Noise</test>
+					<test>MC</test>
+				</disabledtests>
+				<jobpolicyname>ADE XL Default</jobpolicyname>
+				<allcornersenabled>0</allcornersenabled>
+				<runoptions>
+					<mode>Monte Carlo Sampling
+						<runoption>mcmethod
+							<value>all</value>
+						</runoption>
+						<runoption>mcnumpoints
+							<value>100</value>
+						</runoption>
+						<runoption>mcnumbins
+							<value></value>
+						</runoption>
+						<runoption>mcStopEarly
+							<value>0</value>
+						</runoption>
+						<runoption>mcStopMethod
+							<value>Significance Test</value>
+						</runoption>
+						<runoption>samplingmode
+							<value>lds</value>
+						</runoption>
+						<runoption>saveprocess
+							<value>0</value>
+						</runoption>
+						<runoption>savemismatch
+							<value>0</value>
+						</runoption>
+						<runoption>parasiticanalysis
+							<value>0</value>
+						</runoption>
+						<runoption>mcreferencepoint
+							<value>0</value>
+						</runoption>
+						<runoption>donominal
+							<value>1</value>
+						</runoption>
+						<runoption>saveallplots
+							<value>1</value>
+						</runoption>
+						<runoption>montecarloseed
+							<value></value>
+						</runoption>
+						<runoption>mcstartingrunnumber
+							<value></value>
+						</runoption>
+						<runoption>dumpParamMode
+							<value>no</value>
+						</runoption>
+					</mode>
+				</runoptions>
+				<sortVariableValues>0</sortVariableValues>
+			</checkpoint>
+			<timestamp>Apr 16 08:32:24 2026</timestamp>
+			<uuid>{133a01bd-1a21-4dd8-a35e-7311b904dd64}</uuid>
+			<resultsname>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/MonteCarlo.6.rdb</resultsname>
+			<simresults>$AXL_SETUPDB_DIR/results/data/MonteCarlo.6.rdb</simresults>
+			<rawdatadelstrategy>SaveAll
+				<simdatasavemode>All</simdatasavemode>
+			</rawdatadelstrategy>
+			<saveevalerrorstrategy>SaveNone</saveevalerrorstrategy>
+			<netlistdelstrategy>SaveAll</netlistdelstrategy>
+			<uselocalpsfdir>false</uselocalpsfdir>
+			<localpsfdir>/tmp/il2244vt26_shreyav_shreyav_083224229</localpsfdir>
+			<psfdir>/home/shreyav/Project/Sim/instrumentation_amplifier/ia_tb_ac/adexl/results/data/MonteCarlo.6</psfdir>
+			<simdir>$AXL_PROJECT_DIR/instrumentation_amplifier/ia_tb_ac/adexl/results/data/MonteCarlo.6</simdir>
+			<gendatasheetplotsonsimulation>0</gendatasheetplotsonsimulation>
+			<runlog>/home/shreyav/Project/instrumentation_amplifier/ia_tb_ac/adexl/results/data/MonteCarlo.6.log</runlog>
+			<runlogfile>$AXL_SETUPDB_DIR/results/data/MonteCarlo.6.log</runlogfile>
+			<schematicpoint></schematicpoint>
+			<test>all</test>
+		</historyentry>
+	</history>
+</setupdb>

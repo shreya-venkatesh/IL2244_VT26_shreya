@@ -1,0 +1,9 @@
+(
+ (nil name "6" fundName "" freqVar "VIN_FREQ" freq "* Nan *" signal "Large" srcId "V11" maxHarms "3" freqIndex "freq" oversample "1")
+ (nil name "5" fundName "" freqVar "VIN_FREQ" freq "* Nan *" signal "Large" srcId "V10" maxHarms "3" freqIndex "freq" oversample "1")
+ (nil name "2" fundName "" freqVar "1/(60-0)" freq "16.6666666666666664353702032031m" signal "Large" srcId "" maxHarms "3" freqIndex "freq" oversample "1")
+ (nil name "7" fundName "" freqVar "VIN_FREQ" freq "* Nan *" signal "Large" srcId "V13" maxHarms "3" freqIndex "freq" oversample "1")
+ (nil name "8" fundName "" freqVar "1/(250u-0)" freq "4K" signal "Large" srcId "V4" maxHarms "3" freqIndex "freq" oversample "1")
+ (nil name "3" fundName "" freqVar "1/500u" freq "2K" signal "Large" srcId "" maxHarms "3" freqIndex "freq" oversample "1")
+ (nil name "1" fundName "" freqVar "1/(60-0)" freq "16.6666666666666664353702032031m" signal "Large" srcId "" maxHarms "3" freqIndex "freq" oversample "1")
+)

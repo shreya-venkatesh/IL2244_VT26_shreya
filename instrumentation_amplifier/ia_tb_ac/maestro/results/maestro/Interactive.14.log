@@ -1,0 +1,20 @@
+Starting Single Run, Sweeps and Corners...
+
+Current time: Mon Apr 20 18:26:11 2026 
+Best design point: 1
+Design specs: 
+	NoiseXF	corner	Nominal - 
+	V/V /V13; pxf dB20(V/V)		Error	No
+	V/V /V12; pxf dB20(V/V)		Error	No
+	(/VOUT)/(/net3 h=0)  pac dB20(V/V)		Error	No
+	(/VOUT)/(/net6 h=0)  pac dB20(V/V)		Error	No
+	v /VOUT VDD=2.97; pac mag(V)		Error	No
+	v /VOUT VDD=3.63; pac mag(V)		Error	No
+	(/VOUT)/(/net3 h=0)  pac mag(V/V)		Error	No
+Design parameters: 
+
+Interactive.14
+Number of points completed: 1
+Number of simulation errors: 0
+Interactive.14 completed. 
+Current time: Mon Apr 20 18:26:24 2026 

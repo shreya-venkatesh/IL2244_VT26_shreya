@@ -1,0 +1,47 @@
+// VerilogA for instrumentation_amplifier, rleg, veriloga
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+module rleg(
+    vin_p,
+    vin_n,
+    rld_out,
+    VDDA,
+    GNDA
+);
+
+inout vin_p, vin_n, rld_out, VDDA, GNDA;
+electrical vin_p, vin_n, rld_out, VDDA, GNDA;
+
+parameter real Arld      = 50;      // RLD gain
+parameter real f_rld_lp  = 200;     // RLD bandwidth
+parameter real v_margin  = 0.1;
+
+real vcm;
+real vdd;
+real vout_int;
+
+analog begin
+
+    vdd = V(VDDA, GNDA);
+
+    // Common-mode detection
+    vcm = (V(vin_p, GNDA) + V(vin_n, GNDA)) / 2.0;
+
+    // Inverting amplifier with bandwidth limit
+    vout_int = laplace_nd(-Arld * vcm,
+                          {2*`M_PI*f_rld_lp},
+                          {1, 2*`M_PI*f_rld_lp});
+
+    // Rail limiting
+    if (vout_int > vdd - v_margin)
+        V(rld_out, GNDA) <+ vdd - v_margin;
+    else if (vout_int < v_margin)
+        V(rld_out, GNDA) <+ v_margin;
+    else
+        V(rld_out, GNDA) <+ vout_int;
+
+end
+
+endmodule
